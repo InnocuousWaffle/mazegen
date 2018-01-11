@@ -1,41 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package levelgen;
-
 import java.util.Scanner;
 import java.util.Random;
-/**
- *
- * @author Owner
- */
+
 public class LevelGen {
-    
     public block [][] level;
     public Scanner s = new Scanner(System.in);
 
-    
-    
     public static void main(String[] args) {
-        // TODO code application logic here
-        
        LevelGen fish = new LevelGen();
-       
        for(int i=0;i<100;i++){
        fish.fillaray();
        fish.makeBox();
        fish.CallsMazeMake();
        fish.showLevel();
        fish.empty();
-       
        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
        }
-        
-        
     }
+    
     public void empty(){
         level=null;
         System.out.print("One ideration has compleatd");
@@ -99,17 +81,13 @@ public class LevelGen {
         mazemake(0, 0, level.length, level[0].length);
     }
     
-    
-    public void mazemake(int a,int b,int x, int y)
-    {   
+    public void mazemake(int a,int b,int x, int y){
         if((x-a<4)||(y-b<4)){   
-            return;
+        return;
         }           
         System.out.println("maze code activated");
         int wall = (int)(Math.random()*((x-2)-(a+2))+(a+2));
         int floor = (int)(Math.random()*((y-2)-(b+2))+(b+2));
-        
-          
         
         System.out.print(wall);
         System.out.print("<=wall | floor=> ");
@@ -120,8 +98,7 @@ public class LevelGen {
         System.out.print(x);
         System.out.print(" <= x | y=>");
         System.out.println(y);
-        
-       
+        showLevel();
         level[wall][floor]=new block(1);
         
         for(int part = a ; part<x ; part++){
@@ -131,14 +108,11 @@ public class LevelGen {
         for(int part = b ; part<y ; part++){
             level[wall][part]=new block(1);
         }
-      //  
         mazemake(0,0,wall,floor);
-        System.out.println("stage one compleated");
+        System.out.println("stage one completed");
         //showLevel();
-        mazemake(wall,floor,level.length,level[wall].length);
- 
+       mazemake(wall,floor,level.length,level[wall].length);
         return;
-        
     }
 }
     
